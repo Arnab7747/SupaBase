@@ -25,28 +25,7 @@ Deployed easily on **Vercel** and powered by **Supabase PostgreSQL**.
 
 ## 📂 Project Structure
 
-# Project Directory Structure
-
-src:
-  app:
-    # Files directly under app/
-    - layout.tsx: "Global layout + navbar"
-    - page.tsx: "Home page"
-
-    # Subdirectory for events
-    events:
-      - page.tsx: "Events list"
-      "[id]":
-        - page.tsx: "RSVP page (dynamic route)"
-
-  lib:
-    - supabaseClient.ts: "Supabase client setup"
-
-  styles:
-    - globals.css: "Tailwind + global styles"
-
-
----
+![alt text](image.png)
 
 # Project Setup and Deployment Guide
 
