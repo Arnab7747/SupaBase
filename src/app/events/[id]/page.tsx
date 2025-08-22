@@ -4,16 +4,24 @@ import { useEffect, useState } from "react"
 import { supabase } from "../../../../lib/supabaseClient"
 import { useParams } from "next/navigation"
 
+type Event = {
+  id: number
+  title: string
+  description: string | null
+  date: string
+  city: string | null
+}
+
 export default function EventDetailPage() {
   const params = useParams()
   const eventId = params.id as string
-  const [event, setEvent] = useState<any>(null)
+  const [event, setEvent] = useState<Event | null>(null)
   const [status, setStatus] = useState("")
 
   useEffect(() => {
     async function fetchEvent() {
       const { data } = await supabase
-        .from("events")
+        .from("events") // ✅ lowercase
         .select("*")
         .eq("id", eventId)
         .single()
@@ -23,9 +31,8 @@ export default function EventDetailPage() {
   }, [eventId])
 
   async function handleRSVP(choice: string) {
-    // For demo, assume user_id = 1
     const { error } = await supabase
-      .from("RSVPs")
+      .from("rsvps") // ✅ lowercase
       .upsert({ user_id: 1, event_id: eventId, status: choice })
 
     if (!error) setStatus(choice)
@@ -37,9 +44,7 @@ export default function EventDetailPage() {
     <div className="p-6">
       <h1 className="text-2xl font-bold">{event.title}</h1>
       <p>{event.description}</p>
-      <p className="text-sm text-gray-500">
-        {event.date} • {event.city}
-      </p>
+      <p className="text-sm text-gray-500">{event.date} • {event.city}</p>
 
       <div className="mt-4">
         <p className="font-medium mb-2">Your RSVP:</p>
