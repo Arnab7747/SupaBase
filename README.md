@@ -25,19 +25,25 @@ Deployed easily on **Vercel** and powered by **Supabase PostgreSQL**.
 
 ## 📂 Project Structure
 
--src/
-├── app/
-│ ├── events/
-│ │ ├── [id]/page.tsx # RSVP page
-│ │ └── page.tsx # Events list
-│ ├── layout.tsx # Global layout + navbar
-│ └── page.tsx # Home page
-│
-├── lib/
-│ └── supabaseClient.ts # Supabase client setup
-│
-├── styles/
-│ └── globals.css # Tailwind + global styles
+# Project Directory Structure
+
+src:
+  app:
+    # Files directly under app/
+    - layout.tsx: "Global layout + navbar"
+    - page.tsx: "Home page"
+
+    # Subdirectory for events
+    events:
+      - page.tsx: "Events list"
+      "[id]":
+        - page.tsx: "RSVP page (dynamic route)"
+
+  lib:
+    - supabaseClient.ts: "Supabase client setup"
+
+  styles:
+    - globals.css: "Tailwind + global styles"
 
 
 ---
